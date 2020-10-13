@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="start center" class="container">
+  <div *ngIf="euroToUsd">EURO to USD rate: {{ euroToUsdRealRate | number: '1.5' }}</div>
+
+  <div *ngIf="!euroToUsd">USD to EURO rate: {{ usdToEuroRealRate | number: '1.5' }}</div>
+
+  <form class="" [formGroup]="converterForm" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+    <mat-form-field fxFlex="200px">
+      <span matPrefix>{{ euroToUsd ? '€' : '$' }} &nbsp;</span>
+      <input formControlName="initialValue" matInput [placeholder]="euroToUsd ? 'EUR' : 'USD'" (keyup)="updateConvertedValue()" />
+    </mat-form-field>
+
+    <button mat-mini-fab color="primary" (click)="toggleConversion()"><mat-icon>swap_horiz</mat-icon></button>
+
+    <!--    <mat-form-field>-->
+    <div fxFlex="200px">
+      <span>{{ euroToUsd ? '$' : '€' }} &nbsp;</span>
+      <span> {{ convertedValue | number: '1.5' }}</span>
+    </div>
+    <!--      <input formControlName="convertedValue" matInput [placeholder]="euroToUsd ? 'usd' : 'euro'" />-->
+    <!--    </mat-form-field>-->
+  </form>
+</div>
